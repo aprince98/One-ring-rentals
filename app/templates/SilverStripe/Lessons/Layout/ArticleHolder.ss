@@ -16,19 +16,26 @@
 								<a href="$Link">
 									<span class="btn btn-default">Read More</span>
 								</a>
-								<img src="http://placehold.it/766x515" alt="" />
+								$Photo.ScaleWidth(750)
 							</div>
 							<div class="tag"><i class="fa fa-file-text"></i></div>
 							<div class="info-blog">
 								<ul class="top-info">
-									<li><i class="fa fa-calendar"></i> July 30, 2014</li>
+									<li><i class="fa fa-calendar"></i> $Date.Long</li>
 									<li><i class="fa fa-comments-o"></i> 2</li>
-									<li><i class="fa fa-tags"></i> Properties, Prices, best deals</li>
+									<li><i class="fa fa-tags"></i> 
+                                        $CategoriesList
+                                    </li>
 								</ul>
+
 								<h3>
 									<a href="$Link">$Title</a>
 								</h3>
-								<p>Sed rutrum urna id tellus euismod gravida. Praesent placerat, mauris ac pellentesque fringilla, tortor libero condimen. Aliquam fermem tum nulla felis, sed molestie libero porttitor in.</p>
+                                <% if $Teaser %>
+                                    <p>$Teaser</p>
+                                <% else %>
+								    <p>$Content.FirstSentence</p>
+                                <% end_if %>
 							</div>
 						</div>
                         <% end_loop %>

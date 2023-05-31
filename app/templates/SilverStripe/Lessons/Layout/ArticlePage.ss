@@ -27,22 +27,33 @@
 				<h1 class="blog-title">How to get your dream property for the best price?</h1>
 				
 				<div class="blog-main-image">
-					<img src="http://placehold.it/765x362" alt="" />
+                    <% with $Photo.ScaleWidth(750) %>
+					    <img class="my-custom-class" src="$URL" alt="" width="$Width" height="$Height" />
+                    <% end_with %>
 					<div class="tag"><i class="fa fa-file-text"></i></div>
+
 				</div>
 				
 				<div class="blog-bottom-info">
 					<ul>
-						<li><i class="fa fa-calendar"></i> July 30, 2014</li>
+						<li><i class="fa fa-calendar"></i> $Date.Long</li>
 						<li><i class="fa fa-comments-o"></i> 3 Comments</li>
-						<li><i class="fa fa-tags"></i> Properties, Prices, best deals</li>
+						<li><i class="fa fa-tags"></i> 
+                            $CategoriesList
+                        </li>
 					</ul>
 					
-					<div id="post-author"><i class="fa fa-pencil"></i> By John Doe</div>
+					<div id="post-author"><i class="fa fa-pencil"></i> By Prince William</div>
 				</div>
 				
 				<div class="post-content">
-					<div class="highlight-bold">Phasellus suscipit aliquam nisl et porttitor. Suspendisse potenti. Fusce libero velit, tristique eu mauris vitae, convallis facilisis sapien. Mauris urna diam, fringilla sit amet eleifend id, commodo ac lorem. Curabitur at erat justo.</div>
+					<div class="highlight-bold">
+                    <% if $Teaser %>
+                        <p>$Teaser</p>
+                    <% else %>
+					    <p>$Content.FirstSentence</p>
+                    <% end_if %>
+                    </div>
 					
 					<div class="divider"></div>
 					
@@ -80,37 +91,30 @@
 						<i class="fa fa-print"></i>
 					</a>
 				</div>
+                <% if $Brochure %>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <% with $Brochure %>
+                                <a class="btn btn-warning btn-block" href="$URL"> Download brochure ($Extension, $Size)</a>
+                        </div>
+                    </div>
+                    <% end_with %>
+                <% end_if %>
 				
 				<h1 class="section-title">Comments</h1>
 				
 				<div class="comments">
 					<ul>
+                        <% loop $Comments %>
 						<li>
 							<img src="images/comment-man.jpg" alt="" />
 							<div class="comment">
 								<a href="#" class="btn btn-default-color">Reply</a>
-								<h3>John Doe<small>30 July, 2014</small></h3>
-								<p>Etiam eget felis lacus. In hendrerit, urna in fringilla interdum, nunc mauris condimentum purus, vel ullamcorper dui risus sed tellus. Nullam lacinia porttitor velit fermentum accumsan. Etiam dui lorem, lobortis pellentesque malesuada nec, lacinia pulvinar libero.</p>
+								<h3>$Name<small>$Created.Format('j F, Y')</small></h3>
+								<p>$Comment</p>
 							</div>
-							<ul>
-								<li>
-									<img src="images/comment-man.jpg" alt="" />
-									<div class="comment">
-										<a href="#" class="btn btn-default-color">Reply</a>
-										<h3>John Doe<small>30 July, 2014</small></h3>
-										<p>In hendrerit, urna in fringilla interdum, nunc mauris condimentum purus, vel ullamcorper dui risus sed tellus. Nullam lacinia porttitor velit fermentum accumsan. Etiam dui lorem, lobortis pellentesque malesuada nec, lacinia pulvinar libero.</p>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<img src="images/comment-woman.jpg" alt="" />
-							<div class="comment">
-								<a href="#" class="btn btn-default-color">Reply</a>
-								<h3>Mary Doe<small>31 July, 2014</small></h3>
-								<p>Etiam eget felis lacus. In hendrerit, urna in fringilla interdum, nunc mauris condimentum purus, vel ullamcorper dui risus sed tellus. Nullam lacinia porttitor velit fermentum accumsan. Etiam dui lorem, lobortis pellentesque malesuada nec, lacinia pulvinar libero. Quisque pretium nunc sed nisl vehicula gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							</div>
-						</li>
+							
+                        <% end_loop %>
 					</ul>
 					
 					<div class="comments-form">
@@ -119,23 +123,7 @@
 							<p>Your email address will no be published. Required fields are marked*</p>
 						</div>
 						
-						<form class="form-style">
-							<div class="col-sm-6">
-								<input type="text" name="Name" placeholder="Name*" class="form-control" />
-							</div>
-							
-							<div class="col-sm-6">
-								<input type="email" name="Email" placeholder="Email*" class="form-control"  />
-							</div>
-							
-							<div class="col-sm-12">
-								<textarea name="Comment" placeholder="Comment*" class="form-control"></textarea> 
-							</div>
-							
-							<div class="center">
-								<button type="submit" class="btn btn-default-color btn-lg">Post Comment</button>
-							</div>
-						</form>
+						$CommentForm
 					</div>
 				</div>
 				

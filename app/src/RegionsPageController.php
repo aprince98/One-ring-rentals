@@ -4,8 +4,7 @@ namespace SilverStripe\Lessons;
 
 use PageController;
 
-
-class ArticleHolderController extends PageController
+class RegionsPageController extends PageController
 {
-    
+
 }
