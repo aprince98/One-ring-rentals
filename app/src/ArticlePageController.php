@@ -55,7 +55,7 @@ class ArticlePageController extends PageController
     public function handleComment($data, $form)
 {
     $comment = ArticleComment::create();
-        $comment->ArticlePageID = $this->ID;
+        $comment-> ArticlePageID = $this->ID;
         $form->saveInto($comment);
         $comment->write();
 
